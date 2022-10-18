@@ -14,5 +14,6 @@ namespace Dapper.Repository.IRepository
         public Task<bool> AddDepartment(DepartmentRequestModel departmentRequestModel);
         public Task<List<Department>> GetAlldepartment();
         public Task<bool> UpdateDepartment(DepartmentRequestModel model);
+        public Task<bool> deleteDepartment(int deptId);
     }
 }

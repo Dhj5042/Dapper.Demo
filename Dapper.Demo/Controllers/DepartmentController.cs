@@ -73,23 +73,23 @@ namespace Dapper.Demo.Controllers
         }
         #endregion
 
-        //#region --> Delelte Department 
-        //[Route("DeleteDepartment")]
-        //[HttpGet]
-        //public async Task<IActionResult> DeleteDepartment(int depetId)
-        //{
-        //    try
-        //    {
-        //        var response = await _departmentService.UpdateDepartment(model);
-        //        return StatusCode(response.StatusCode, response);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //ExceptionLogModel exceptionLogModel = new ExceptionLogModel(null, ex.Message, ex.StackTrace, "", HttpContext.Request.Path);
-        //        //await _exceptionLogService.AddException(exceptionLogModel);
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
-        //#endregion
+        #region --> Delelte Department 
+        [Route("DeleteDepartment")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteDepartment(int depetId)
+        {
+            try
+            {
+                var response = await _departmentService.DeleteDepartment(depetId);
+                return StatusCode(response.StatusCode, response);
+            }
+            catch (Exception ex)
+            {
+                //ExceptionLogModel exceptionLogModel = new ExceptionLogModel(null, ex.Message, ex.StackTrace, "", HttpContext.Request.Path);
+                //await _exceptionLogService.AddException(exceptionLogModel);
+                throw new Exception(ex.Message);
+            }
+        }
+        #endregion
     }
 }

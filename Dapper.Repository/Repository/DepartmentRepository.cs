@@ -27,11 +27,23 @@ namespace Dapper.Repository.Repository
         {
             Department department = new Department()
             {
-                DeoartmentName = departmentRequestModel.DepartmentName
+                DepartmentName = departmentRequestModel.DepartmentName
             };
             var result =await _context.Departments.AddAsync(department);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<bool> deleteDepartment(int deptId)
+        {
+            var departmentList = await _context.Departments.FirstOrDefaultAsync(x => x.Id == deptId);
+            if (departmentList != null)
+            {
+                _context.Remove(departmentList);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         public async Task<List<Department>> GetAlldepartment()
@@ -45,7 +57,7 @@ namespace Dapper.Repository.Repository
             var departmentList = await _context.Departments.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (departmentList != null)
             {
-                departmentList.DeoartmentName = model.DepartmentName;
+                departmentList.DepartmentName = model.DepartmentName;
                 _context.Update(departmentList);
                 await _context.SaveChangesAsync();
                 return true;

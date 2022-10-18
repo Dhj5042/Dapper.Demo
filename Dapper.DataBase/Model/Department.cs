@@ -9,7 +9,7 @@ namespace Dapper.DataBase.Model
     public class Department
     {
         public int Id { get; set; }
-        public string DeoartmentName { get; set; }=string.Empty;    
+        public string DepartmentName { get; set; }=string.Empty;    
 
     }
 }
