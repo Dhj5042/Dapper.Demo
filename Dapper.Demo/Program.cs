@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dapper.DataBase.Data;
 using Dapper.Entity.Profiles;
+using Dapper.Repository.DapperWrapper;
 using Dapper.Repository.IRepository;
 using Dapper.Repository.Repository;
 using Dapper.Service.IService;
@@ -27,6 +28,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddTransient<IDepartmentService, DepartmentService>();
+builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<IDapperWrapper, DapperWrapper>();
 var config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new MapperConfig());

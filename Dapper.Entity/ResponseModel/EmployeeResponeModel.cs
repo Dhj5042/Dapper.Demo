@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dapper.DataBase.Model
+namespace Dapper.Entity.ResponseModel
 {
-    public class Employee
+    public class EmployeeResponeModel
     {
-        [Key]
         public int Id { get; set; }
-        public string EmployeeName { get; set; }=string.Empty;
+        public string EmployeeName { get; set; } = string.Empty;
         public string EmployeeAge { get; set; }
         public string EmployeeJoingDate { get; set; }
         public string EmployeeSalary { get; set; }
 
         public int DepartmentId { get; set; }
-        [ForeignKey("DepartmentId")]
-        public virtual Department Department { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

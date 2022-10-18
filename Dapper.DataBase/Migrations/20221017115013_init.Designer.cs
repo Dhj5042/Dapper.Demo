@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dapper.DataBase.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221014063122_init")]
+    [Migration("20221017115013_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,10 @@ namespace Dapper.DataBase.Migrations
             modelBuilder.Entity("Dapper.DataBase.Model.Employee", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
@@ -66,6 +69,8 @@ namespace Dapper.DataBase.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Employees");
                 });
 
@@ -73,7 +78,7 @@ namespace Dapper.DataBase.Migrations
                 {
                     b.HasOne("Dapper.DataBase.Model.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -44,6 +44,27 @@ namespace Dapper.Service.Service
             return response;
         }
 
+        public async Task<ResponseModel<bool>> DeleteDepartment(int deptId)
+        {
+            ResponseModel<bool> response = new ResponseModel<bool>();
+            var result = await _departmentRepository.deleteDepartment(deptId);
+            if (result)
+            {
+                response.StatusCode = (int)HttpStatusCode.OK;
+                response.Status = true;
+                response.Result = true;
+                response.Message = "Deleted SuccessFully";
+            }
+            else
+            {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Status = false;
+                response.Result = false;
+                response.Message = "Something Went Wrong";
+            }
+            return response;
+        }
+
         public async Task<ResponseModel<List<DepartmentResponseModel>>> GetAlldepartment()
         {
             ResponseModel<List<DepartmentResponseModel>> response = new ResponseModel<List<DepartmentResponseModel>>();
